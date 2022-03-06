@@ -5,7 +5,6 @@ ruby "3.1.1"
 
 gem "rails", "~> 7.0.2", ">= 7.0.2.2"
 gem "sprockets-rails"
-gem "sqlite3", "~> 1.4"
 gem 'tzinfo-data'  
 gem "puma", "~> 5.0"
 gem "importmap-rails"
@@ -18,10 +17,16 @@ gem 'devise', '~> 4.8', '>= 4.8.1'
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem "sqlite3", "~> 1.4"
 end
 
 group :development do
   gem "web-console"
+  gem "sqlite3", "~> 1.4"         # ok for development, not ok for production 
+end
+
+group :production do
+  gem 'pg', '~> 1.3', '>= 1.3.3'  # db - ok for production
 end
 
 group :test do
